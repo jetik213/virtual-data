@@ -1,0 +1,54 @@
+services:
+  postgres:
+    container_name: postgresproyectocibertec
+    image: postgres
+    environment:
+      POSTGRES_USER: cibertec
+      POSTGRES_PASSWORD: 1234
+      PGDATA: /data/postgres
+    volumes:
+      - postgresproyectocibertec:/data/postgres
+    ports:
+      - "5431:5432"
+    networks:
+      - postgresproyectocibertec
+    restart: unless-stopped
+  pgadmin:
+    container_name: pgadminproyectocibertec
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadminproyectocibertec:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgresproyectocibertec
+    restart: unless-stopped
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkinproyectocibertec
+    ports:
+      - "9411:9411"
+    networks:
+      - springproyectocibertec
+  rabbitmq:
+    image: rabbitmq:3.10.5-management-alpine
+    container_name: rabbitmqproyectocibertec
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - springproyectocibertec
+
+networks:
+  postgresproyectocibertec:
+    driver: bridge
+  springproyectocibertec:
+    driver: bridge
+
+volumes:
+  postgresproyectocibertec:
+  pgadminproyectocibertec:
