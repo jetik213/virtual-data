@@ -3,10 +3,7 @@ package pe.edu.cibertec.reunionvirtual.model;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,7 +19,21 @@ public class AsesoriaCheck implements Serializable {
     private String link;
     private Date fechaCreacion;
 
-    //implementado
+    //nuevo implementado
+
+    //@Builder
+    public AsesoriaCheck(Integer id, Integer idAsesoria, String link, Date fechaCreacion) {
+        this.id = id;
+        this.idAsesoria = idAsesoria;
+        this.link = link;
+        this.fechaCreacion = fechaCreacion;
+    }
+    public AsesoriaCheck(Integer idAsesoria, String link, Date fechaCreacion) {
+        this.idAsesoria = idAsesoria;
+        this.link = link;
+        this.fechaCreacion = fechaCreacion;
+    }
+
     public AsesoriaCheck() {
 
     }
