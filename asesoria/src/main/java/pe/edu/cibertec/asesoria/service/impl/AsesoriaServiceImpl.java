@@ -56,9 +56,8 @@ public class AsesoriaServiceImpl implements IAsesoriaService {
 
         NotificacionRequest notificacionRequest = new NotificacionRequest(
                 asesoriaResponse.getId(),
-                asesoriaResponse.getPsicologo().getEmail(),
-                String.format("Hola %s, bienvenidos a Cibertec...",
-                        asesoriaResponse.getPsicologo().getNombre())
+                String.format("Hola %s, tienes una nueva cita de asesoría psicológica el día %s de %s horas",
+                        asesoriaResponse.getPsicologo().getNombre(),new SimpleDateFormat("dd/MM/yyyy").format(asesoriaResponse.getFecha()),asesoriaResponse.getHorario().getNombre())
         );
 
         rabbitMQMessageProducer.publish(

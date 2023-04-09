@@ -18,7 +18,6 @@ public class NotificacionService implements INotificacionService {
         notificacionRepo.save(
                 Notificacion.builder()
                         .clienteId(notificacionRequest.clienteId())
-                        .clienteEmail(notificacionRequest.clienteEmail())
                         .remitente("Cibertec")
                         .mensaje(notificacionRequest.mensaje())
                         .horaEnvio(new Date())

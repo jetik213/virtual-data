@@ -18,12 +18,18 @@ public class Notificacion {
     @GeneratedValue
     private Integer notificacionId;
     private Integer clienteId;
-    private String clienteEmail;
     private String remitente;
     private String mensaje;
     private Date horaEnvio;
 
     public Notificacion() {
+    }
 
+    public Notificacion(Integer notificacionId, Integer clienteId, String remitente, String mensaje, Date horaEnvio) {
+        this.notificacionId = notificacionId;
+        this.clienteId = clienteId;
+        this.remitente = remitente;
+        this.mensaje = mensaje;
+        this.horaEnvio = horaEnvio;
     }
 }
